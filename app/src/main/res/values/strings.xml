@@ -30,4 +30,13 @@
     <string name="title_activity_dash_board">DashBoardActivity</string>
     <string name="title_activity_reset_password">ResetPasswordActivity</string>
     <string name="logout">Logout</string>
+
+    <string name="view_profile">View Profile</string>
+    <string name="request_hotel_reservation">request hotel reservation</string>
+    <string name="view_reservation_summary">view reservation summary</string>
+    <string name="view_pending_reservation">view pending reservation</string>
+    <string name="guest_page_title">Hello, Guest User!</string>
+    <string name="admin_page_title">Hello, Admin User!</string>
+    <string name="search_for_user">search for user</string>
+
 </resources>
