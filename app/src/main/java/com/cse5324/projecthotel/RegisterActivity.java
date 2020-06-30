@@ -22,6 +22,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText userName,passWord,firstName,lastName,phone,email,address,city,state,zipcode,creditCardno,creditExpiry;
     String suserName,spassWord,sfirstName,slastName,sphone,semail,saddress,scity,sState,sZipCode,screditCardno,sCreditExpiry,sRole;
     Boolean Check = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -156,7 +157,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         sRole = (String) spinner1.getSelectedItem();
 
-        if (sRole.matches(""))
+        if (sRole.matches("None"))
         {
             Toast.makeText(RegisterActivity.this, "Please select a Role", Toast.LENGTH_SHORT).show();
             Check = false;

@@ -17,6 +17,7 @@
     <string name="creditcard">Credit Card Number:</string>
     <string name="cc_expiry">Credit Card Expiry (MM/YY):</string>
     <string name="title_activity_main2">MainActivity</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -28,4 +29,5 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_dash_board">DashBoardActivity</string>
     <string name="title_activity_reset_password">ResetPasswordActivity</string>
+    <string name="logout">Logout</string>
 </resources>
