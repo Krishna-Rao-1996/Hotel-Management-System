@@ -5,28 +5,21 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:text="@string/admin_page_title"
-        android:textSize="40sp"
-        android:textStyle="bold" />
+        android:textSize="13pt"
+        android:text="LOADING..." />
 
-    <Button
-        android:id="@+id/view_profile_button"
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp"
-        android:text="@string/view_profile" />
-
-    <Button
-        android:id="@+id/search_for_user_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp"
-        android:text="@string/search_for_user" />
+        android:layout_marginTop="10dp"
+        android:textSize="10pt"
+        android:text="Search For Room Page" />
 
 </LinearLayout>

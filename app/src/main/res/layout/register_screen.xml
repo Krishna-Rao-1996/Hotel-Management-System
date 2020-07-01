@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_margin="10dp"
-    android:layout_height="match_parent">
-
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:overScrollMode="never"
+        android:verticalScrollbarPosition="defaultPosition">
 
         <EditText
             android:id="@+id/register_username"
@@ -94,13 +94,20 @@
             android:inputType="number"
             android:textSize="20sp" />
 
-        <EditText
+      <!--  <EditText
             android:id="@+id/register_cc_expiry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/cc_expiry"
             android:inputType="number"
-            android:textSize="20sp" />
+            android:textSize="20sp" /> -->
+        <EditText
+            android:id="@+id/register_cc_expiry"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:hint="YYYY-MM-DD"
+            android:inputType="date" />
 
         <Spinner
             android:id="@+id/Roles"
@@ -111,16 +118,16 @@
 
         <Button
             android:id="@+id/registers_button"
-            android:layout_width="wrap_content"
+            android:layout_width="0.8in"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             android:background="@drawable/custom_button"
             android:onClick="registerCheck"
             android:text="@string/register"
-            android:textColor="#ECECEC" />
+            android:textColor="#ECECEC"
+            android:padding="10dp"
+            android:layout_marginBottom="20dp"/>
 
     </LinearLayout>
-
 </ScrollView>
