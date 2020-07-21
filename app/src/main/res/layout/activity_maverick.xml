@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayouttLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Maverick">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Maverick"
+        android:textSize="13pt"
+        tools:layout_editor_absoluteX="144dp"
+        tools:layout_editor_absoluteY="103dp" />
+
+    <Space
+        android:layout_width="423dp"
+        android:layout_height="38dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="144dp" />
+
+    <EditText
+        android:id="@+id/editTextDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:inputType="date"
+        android:text="2020-08-20"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:layout_editor_absoluteX="-35dp"
+        tools:layout_editor_absoluteY="214dp" />
+
+    <Space
+        android:layout_width="423dp"
+        android:layout_height="38dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="265dp" />
+
+    <TextView
+        android:id="@+id/roomtype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Standard"
+        android:textSize="13pt"
+        tools:layout_editor_absoluteX="144dp"
+        tools:layout_editor_absoluteY="311dp" />
+
+    <Space
+        android:layout_width="423dp"
+        android:layout_height="38dp"
+        tools:layout_editor_absoluteX="-6dp"
+        tools:layout_editor_absoluteY="358dp" />
+
+    <EditText
+        android:id="@+id/editRoomNumber"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:ems="10"
+        android:inputType="number"
+        android:linksClickable="false"
+        android:text="101"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:layout_editor_absoluteX="7dp"
+        tools:layout_editor_absoluteY="396dp" />
+</RelativeLayouttLayout>

@@ -60,4 +60,6 @@
         <item>View Reservations Summary</item>
         <item>View Pending Reservations</item>
     </string-array>
+    <item name="search_hotelNames" type="id" />
+    <item name="search_roomNumber" type="id" />
 </resources>
