@@ -1,6 +1,7 @@
 package com.cse5324.projecthotel;
 
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 /*
@@ -35,7 +36,6 @@ import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    Spinner spinner1;
     DatabaseHelper db;
     EditText userName,passWord,firstName,lastName,phone,email,address,city,state,zipcode,creditCardno,creditExpiry;
     String suserName,spassWord,sfirstName,slastName,sphone,semail,saddress,scity,sState,sZipCode,screditCardno,sCreditExpiry,sRole;
@@ -45,18 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_screen);
         db = new DatabaseHelper(this);
-        List<String> spinnerArray =  new ArrayList<String>();
-        //spinnerArray.add("None");
-        spinnerArray.add("Guest");
-        spinnerArray.add("Manager");
-        spinnerArray.add("Admin");
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, spinnerArray);
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner1 = (Spinner) findViewById(R.id.Roles);
-        spinner1.setAdapter(adapter);
         getSupportActionBar().setTitle("Registration"); // for set actionbar title
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
@@ -75,7 +64,6 @@ public class RegisterActivity extends AppCompatActivity {
         zipcode = (EditText) findViewById(R.id.register_zipcode);
         creditCardno = (EditText) findViewById(R.id.register_credit_card);
         creditExpiry = (EditText) findViewById(R.id.register_cc_expiry);
-        spinner1 = (Spinner) findViewById(R.id.Roles);
 
         Check = true;   //Important to add here, so registration works if user edits back to correct format
         suserName = userName.getText().toString().trim();
@@ -185,52 +173,46 @@ public class RegisterActivity extends AppCompatActivity {
             Check = false;
         }
 
-        sRole = (String) spinner1.getSelectedItem();
-
-        if (sRole.matches(""))
-        {
-            Toast.makeText(RegisterActivity.this, "Please select a Role", Toast.LENGTH_SHORT).show();
-            Check = false;
-        }
-        if(sRole == "None")
-        {
-            Toast.makeText(RegisterActivity.this, "Role cannot be None", Toast.LENGTH_SHORT).show();
-            Check = false;
-        }
-
-        if(Check == true)
-        {
-            /////////////////////Registration Page
-            if(sRole=="Guest")
-            {
-                sRole="g";
-            }
-            else if(sRole=="Admin")
-            {
-                sRole="a";
-            }
-            else if(sRole=="Manager")
-            {
-                sRole="m";
-            }
-            else
-            {
-                sRole="none";
-            }
             /////////////////////
-            boolean res = db.insertData(suserName,spassWord,sfirstName,slastName,sphone,semail,saddress,scity,sState,sZipCode,screditCardno,sCreditExpiry,sRole);
+        String COL_1 = "USERNAME";
+        String COL_2 = "PASSWORD";
+        String COL_3 = "FIRSTNAME";
+        String COL_4 = "LASTNAME";
+        String COL_5 = "PHONE";
+        String COL_6 = "EMAIL";
+        String COL_7 = "ADDRESS";
+        String COL_8 = "CITY";
+        String COL_9 = "STATE";
+        String COL_10 = "ZIPCODE";
+        String COL_11 = "CREDITCARDNO";
+        String COL_12 = "CREDITCARDEXPIRY";
+        String COL_13 = "ROLE";
 
-            if(res == true)
-            {
-                Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, MainAppScreenActivity.class));
-            }
-            else
-            {
-                Toast.makeText(RegisterActivity.this, "Error Occurred in Insertion", Toast.LENGTH_SHORT).show();
-            }
+        ContentValues cv = new ContentValues();
+        cv.put(COL_1, suserName);
+        cv.put(COL_2, spassWord);
+        cv.put(COL_3, sfirstName);
+        cv.put(COL_4, slastName);
+        cv.put(COL_5, sphone);
+        cv.put(COL_6, semail);
+        cv.put(COL_7, saddress);
+        cv.put(COL_8, scity);
+        cv.put(COL_9, sState);
+        cv.put(COL_10, sZipCode);
+        cv.put(COL_11, screditCardno);
+        cv.put(COL_12, sCreditExpiry);
+        cv.put(COL_13, "g");
+        boolean res = db.insertData(cv);
+        if(res == true)
+        {
+            Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, MainAppScreenActivity.class));
         }
-    }
+        else
+        {
+            Toast.makeText(RegisterActivity.this, "Error Occurred in Insertion", Toast.LENGTH_SHORT).show();
+        }
+  }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
