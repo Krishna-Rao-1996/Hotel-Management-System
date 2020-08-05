@@ -53,7 +53,7 @@ public class GuestScreen extends AppCompatActivity implements AdapterView.OnItem
             public void onClick(View v) {
                 //Goes to Request Reservation page
                 //Toast.makeText(GuestScreen.this, "Request Hotel Reservations", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(GuestScreen.this, RequestReservations.class));
+                startActivity(new Intent(GuestScreen.this, ReservationSummary.class));
             }
         });
 

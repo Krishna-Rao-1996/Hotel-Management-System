@@ -47,13 +47,18 @@ public class ReservationList extends AppCompatActivity {
         setContentView(R.layout.activity_reservation_list);
 
 
-        getSupportActionBar().setTitle("Reservation List");
+        getSupportActionBar().setTitle("List of Reservations");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         time = getIntent().getExtras().getString("time");
         date = getIntent().getExtras().getString("date");
         hotel = getIntent().getExtras().getString("hotel");
         activity = getIntent().getExtras().getString("activity");
+
+        if(activity == null)
+        {
+            activity = "null";
+        }
 
         listContent = (ListView)findViewById(R.id.thelist);
 
@@ -108,15 +113,15 @@ public class ReservationList extends AppCompatActivity {
             {
                 String text = parent.getItemAtPosition(position).toString();
 
-                if(activity.equals("GuestScreen"))
+                if(activity.equals("null"))
                 {
-                    Intent myIntent = new Intent(ReservationList.this, CreditCardInformation.class);
+                    Intent myIntent = new Intent(ReservationList.this, SpecificReservation.class);
                     myIntent.putExtra("listselected",text);
                     startActivity(myIntent);
                 }
-                else
+                if(activity.equals("GuestScreen"))
                 {
-                    Intent myIntent = new Intent(ReservationList.this, SpecificReservation.class);
+                    Intent myIntent = new Intent(ReservationList.this, CreditCardInformation.class);
                     myIntent.putExtra("listselected",text);
                     startActivity(myIntent);
                 }

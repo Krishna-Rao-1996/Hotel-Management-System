@@ -18,6 +18,7 @@
             android:background="#000000"
             android:alpha="0.4">
         </TextView>
+
         <Button
             android:id="@+id/logout"
             android:layout_width="wrap_content"
@@ -25,8 +26,8 @@
             android:layout_gravity="end"
             android:layout_marginTop="5dp"
             android:layout_marginRight="5dp"
-            android:paddingHorizontal="0.2in"
             android:background="#2C1EC6"
+            android:paddingHorizontal="0.2in"
             android:text="Logout"
             android:textColor="@color/white" />
         <GridLayout

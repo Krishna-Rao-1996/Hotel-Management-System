@@ -2,15 +2,19 @@ package com.cse5324.projecthotel;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.HashMap;
 
-public class ConfirmReservation extends AppCompatActivity {
+public class ReservationConfirmation extends AppCompatActivity {
     String text="";
+    Button ViewRes;
     String StartDate="",StartTime="",HotelName="",NumberofRooms="",CheckinDate="",CheckoutDate="",RoomType="",TotalPrice="";
     TextView Startdate,Starttime,Hotelname,Numberofrooms,Checkindate,Checkoutdate,Roomtype,Totalprice,ReservationNumber;
     @Override
@@ -19,7 +23,6 @@ public class ConfirmReservation extends AppCompatActivity {
         setContentView(R.layout.activity_confirm_reservation);
 
         getSupportActionBar().setTitle("Reservation Confirmation");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         text = getIntent().getExtras().getString("listselected");
 
@@ -71,7 +74,7 @@ public class ConfirmReservation extends AppCompatActivity {
         }
 
         ReservationNumber = (TextView)findViewById(R.id.Reservationnum);
-        ReservationNumber.setText("100100100");
+        ReservationNumber.setText("100012421234");
 
         Startdate = (TextView)findViewById(R.id.StartDate);
         Startdate.setText(StartDate);
@@ -97,6 +100,15 @@ public class ConfirmReservation extends AppCompatActivity {
         Totalprice = (TextView)findViewById(R.id.TotalPrice);
         Totalprice.setText(TotalPrice);
 
+        ViewRes = (Button)findViewById(R.id.viewreserve);
+
+        ViewRes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(ReservationConfirmation.this, ReservationList.class);
+                startActivity(myIntent);
+            }
+        });
     }
 
     @Override

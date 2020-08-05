@@ -30,7 +30,7 @@ public class CreditCardInformation extends AppCompatActivity {
         ConfirmRes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(CreditCardInformation.this, ConfirmReservation.class);
+                Intent myIntent = new Intent(CreditCardInformation.this, ReservationConfirmation.class);
                 myIntent.putExtra("listselected",text);
                 startActivity(myIntent);
             }

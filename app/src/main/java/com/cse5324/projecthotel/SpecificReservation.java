@@ -22,7 +22,7 @@ public class SpecificReservation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_specific_reservation);
 
-        getSupportActionBar().setTitle("Specific Reservation");
+        getSupportActionBar().setTitle("View Specific Reservations");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         String text = getIntent().getExtras().getString("listselected");

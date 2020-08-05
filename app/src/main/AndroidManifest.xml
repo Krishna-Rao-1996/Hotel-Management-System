@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ConfirmReservation"></activity>
+        <activity android:name=".ReservationConfirmation"></activity>
         <activity android:name=".CreditCardInformation" />
         <activity android:name=".SpecificReservation" />
         <activity android:name=".ReservationList" />

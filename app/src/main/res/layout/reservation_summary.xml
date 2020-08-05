@@ -1,25 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:textSize="13pt"
-        android:text="LOADING..." />
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end">
+            <Button
+                android:id="@+id/logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:paddingHorizontal="0.2in"
+                android:background="#2C1EC6"
+                android:text="Logout"
+                android:textColor="@color/white" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:textSize="10pt"
-        android:layout_marginTop="10dp"
-        android:text="View Reservations Summary Page" />
+            <Button
+                android:id="@+id/filterMenu"
+                android:layout_width="0.25in"
+                android:layout_height="0.25in"
+                android:layout_margin="8dp"
+                android:background="@drawable/filter" />
+        </GridLayout>
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="186dp"
+            app:srcCompat="@drawable/r1" />
+
+        <EditText
+            android:id="@+id/register_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Start Date:   2020-07-24"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/register_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Start Time:12:00:00 noon"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/register_firstname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hotel Name:    Maverick"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/register_lastname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Room Type: Standard"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/register_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Number of Rooms: 1"
+            android:inputType="phone"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/register_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Checkin Date: 2020-07-25"
+            android:inputType="textEmailAddress"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/register_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Checkin Date: 2020-07-31"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/register_city"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:text="Total Price:150 dollars"
+            android:textSize="20sp" />
+
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="199dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/custom_button"
+            android:padding="10dp"
+            android:text="Confirm Reservation"
+            android:textColor="#ECECEC" />
+
+
+    </LinearLayout>
+</ScrollView>
