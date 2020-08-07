@@ -261,7 +261,7 @@ public class MainAppScreenActivity extends AppCompatActivity {
                         intent.putExtra("user_id", cursor.getString(0));
                         startActivity(intent);
                     }
-                    else if(role.equals("m"))
+                    else if(role.equals("h"))
                     {
                         final Intent intent = new Intent(MainAppScreenActivity.this, ManagerScreen.class);
                         intent.putExtra("user_id", cursor.getString(0));
