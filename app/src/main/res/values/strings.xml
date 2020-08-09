@@ -60,4 +60,6 @@
         <item>View Reservations Summary</item>
         <item>View Pending Reservations</item>
     </string-array>
+
+    <string name="logout">Logout</string>
 </resources>

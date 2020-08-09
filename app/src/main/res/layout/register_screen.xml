@@ -106,7 +106,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:ems="10"
-            android:hint="YYYY-MM-DD"
+            android:hint="Credit Card Expiry (MM/YY):"
             android:inputType="date" />
 
         <Button
