@@ -14,7 +14,7 @@ import android.widget.Toast;
 public class ViewSelectedRoom extends AppCompatActivity {
     private Button button1;
     private Button button2;
-    EditText Hotelname,StartDate,Roomtype,Roomnumber,RoomOccupiedStatus,RoomAvailableStatus;
+    EditText Hotelname,StartDate,Roomtype,Roomnumber,RoomOccupiedStatus,RoomAvailableStatus,RoomRate;
     String [] stringArray;
 
     @Override
@@ -30,11 +30,21 @@ public class ViewSelectedRoom extends AppCompatActivity {
         Intent intent = getIntent();
         stringArray = intent.getStringArrayExtra("listselected");
 
-        String temp = stringArray[0];
-        StartDate.setText(temp);
+        Hotelname = (EditText)findViewById(R.id.hotelName);
+        StartDate = (EditText)findViewById(R.id.StartDate);
+        Roomtype = (EditText)findViewById(R.id.roomType);
+        Roomnumber = (EditText)findViewById(R.id.RoomNumber);
+        RoomOccupiedStatus = (EditText)findViewById(R.id.roomOcuupiedStatus);
+        RoomAvailableStatus = (EditText)findViewById(R.id.roomAvailableStatus);
+        RoomRate = (EditText)findViewById(R.id.roomRate);
 
-        Toast.makeText(this, stringArray[0], Toast.LENGTH_SHORT).show();
-
+        StartDate.setText(stringArray[0]);
+        Hotelname.setText(stringArray[4]);
+        Roomtype.setText(stringArray[1]);
+        RoomOccupiedStatus.setText(stringArray[3]);
+        RoomAvailableStatus.setText(stringArray[2]);
+        Roomnumber.setText(stringArray[5]);
+        RoomRate.setText(stringArray[6]);
 
         button1 = findViewById(R.id.button1);
         button2 = findViewById(R.id.button2);
@@ -46,9 +56,10 @@ public class ViewSelectedRoom extends AppCompatActivity {
                 Hotelname.setEnabled(true);
                 StartDate.setEnabled(true);
                 Roomtype.setEnabled(true);
-                Roomnumber.setEnabled(true);
                 RoomOccupiedStatus.setEnabled(true);
                 RoomAvailableStatus.setEnabled(true);
+                Roomnumber.setEnabled(true);
+                RoomRate.setEnabled(true);
             }
         });
     }

@@ -90,6 +90,19 @@
             android:textSize="25dp"
             android:textStyle="bold" />
 
+        <EditText
+            android:id="@+id/roomRate"
+            android:layout_width="325dp"
+            android:inputType="none"
+            android:enabled="false"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:text="Room Rate"
+            android:textAlignment="center"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
         <Button
             android:id="@+id/button1"
             android:layout_width="match_parent"
