@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="95dp" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:textAlignment="center"
+        android:spinnerMode="dropdown"
+        android:visibility="visible"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="43dp" />
+
+    <EditText
+        android:id="@+id/editTextNumber"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="Room Number"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="78dp" />
+
+    <Button
+        android:id="@+id/enter"
+        android:layout_width="0.8in"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/custom_button"
+        android:padding="10dp"
+        android:text="Enter"
+        android:textColor="#ECECEC" />
+
+</LinearLayout>
+

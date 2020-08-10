@@ -78,8 +78,8 @@ public class hotelDatabase extends SQLiteOpenHelper {
 
         //Create content values
         ContentValues cv2 = new ContentValues();
-        cv2.put("manager_id", cv.getAsString("manager"));
-        cv2.put("name", cv.getAsString("hotel"));
+        cv2.put("manager_id", cv.getAsString("manager_id"));
+        cv2.put("name", cv.getAsString("name"));
         cv2.put("location", cv.getAsString("location"));
 
         long res = sqldb.insert(TABLE_HOTEL, null, cv2);
