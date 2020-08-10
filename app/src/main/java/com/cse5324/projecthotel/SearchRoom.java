@@ -19,7 +19,7 @@ import java.util.List;
 public class SearchRoom extends AppCompatActivity {
 
     Spinner spinner2;
-    String hotelNames;
+    String hotelNames="",roomnu="";
     EditText roomnumber;
     int roomno;
     private Button enter;
@@ -61,20 +61,23 @@ public class SearchRoom extends AppCompatActivity {
             public void onClick(View v)
             {
 
-                String r = roomnumber.getText().toString();
+                roomnu = roomnumber.getText().toString();
 
-                if(r.matches(""))
+                if(roomnu.matches(""))
                 {
                     Toast.makeText(SearchRoom.this, "Room Number cannot be empty", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    roomno = Integer.parseInt(r);
+                    roomno = Integer.parseInt(roomnu);
 
                     if(roomno >= 101 && roomno <=125 || roomno >=201 && roomno <=225 || roomno >=301 && roomno <=325 || roomno >=401 && roomno <=413 ||
                             roomno>=414 && roomno<=421 || roomno>=422 && roomno<=425)
                     {
-                        Toast.makeText(SearchRoom.this, "UR AWESOME!", Toast.LENGTH_SHORT).show();
+                        Intent myIntent = new Intent(SearchRoom.this, SelectableRoomList.class);
+                        myIntent.putExtra("Roomno",roomnu);
+                        myIntent.putExtra("hotelname",hotelNames);
+                        startActivity(myIntent);
                     }
                     else
                     {
