@@ -86,7 +86,7 @@ public class SearchRoom extends AppCompatActivity {
                 }
             }
         });
-        getSupportActionBar().setTitle("Search For Room");
+        getSupportActionBar().setTitle("Search Room Filters");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);  //go back button
     }
 
