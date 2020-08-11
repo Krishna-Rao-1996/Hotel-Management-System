@@ -57,7 +57,7 @@ public class ManagerScreen extends AppCompatActivity {  ///implements AdapterVie
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ManagerScreen.this, ViewReservations.class));
+                startActivity(new Intent(ManagerScreen.this, ReservationList.class));
             }
         });
 
