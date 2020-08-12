@@ -38,7 +38,7 @@ public class ReservationList extends AppCompatActivity {
                     "7-24-2020","12:00:00","Liberty","100","7-24-2020","7-26-2020","Standard","80"
             };
     ListView listContent;
-    DatabaseHelper db;
+    hotelDatabase db;
     ArrayAdapter<HashMap<String, String>> arrayAdapter;
 
     @Override
@@ -52,7 +52,9 @@ public class ReservationList extends AppCompatActivity {
 
         listContent = (ListView)findViewById(R.id.thelist);
 
-        db = new DatabaseHelper(this);
+        db = new hotelDatabase(this);
+
+
         //Person first = new Person("7-24-2020","12:00:00","Maverick","100","7-24-2020","7-26-2020","Suite","120");
         //Person second = new Person("7-24-2020","12:00:00","Ranger","100","7-24-2020","7-26-2020","Deluxe","100");
         //Person third = new Person("7-24-2020","12:00:00","Liberty","100","7-24-2020","7-26-2020","Standard","80");

@@ -167,7 +167,7 @@ public class MainAppScreenActivity extends AppCompatActivity {
         ///Default Permanent room values for database
         hdb = new hotelDatabase(this);
         //hdb.deleteFrom();
-        Cursor cursor = hdb.getRoom();
+        Cursor cursor = hdb.getRoom("", "");
         if(cursor.getCount()==0)
         {
             for (int j = 1; j <= 5; j++)  //5 hotels
@@ -217,7 +217,7 @@ public class MainAppScreenActivity extends AppCompatActivity {
         }
 
         //Default hotel table
-        if(hdb.getHotel().getCount()==0)  //no data
+        if(hdb.getHotel("").getCount()==0)  //no data
         {
             hdb.deleteFrom();
             int []mgrID={2,3,4,5,6};
@@ -305,7 +305,7 @@ public class MainAppScreenActivity extends AppCompatActivity {
         }
         else
         {
-            //////////////////////Current page is Login Page
+            //Current page is Login Page
             db = new DatabaseHelper(this);
 
             Cursor cursor=db.ValidateUser(sUsername, sPassword);
@@ -325,7 +325,7 @@ public class MainAppScreenActivity extends AppCompatActivity {
                         intent.putExtra("user_id", cursor.getString(0));
                         startActivity(intent);
                     }
-                    else if(role.equals("h"))
+                    else if(role.equals("m"))
                     {
                         final Intent intent = new Intent(MainAppScreenActivity.this, ManagerScreen.class);
                         intent.putExtra("user_id", cursor.getString(0));

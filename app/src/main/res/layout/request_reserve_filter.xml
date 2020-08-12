@@ -4,15 +4,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:scrollY="@dimen/cardview_default_elevation">
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <GridLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:columnCount="1"
-        android:layout_margin="17dp">
+        android:layout_height="match_parent">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:columnCount="1"
+            android:layout_margin="17dp">
 
             <Button
                 android:id="@+id/cross"
@@ -82,138 +82,138 @@
                     android:textSize="25dp" />
 
             </RadioGroup>
-        <Button
-            android:id="@+id/roomType"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:text="Room Type"
-            android:textAlignment="textStart"
-
-            android:textSize="25dp"/>
-        <RadioGroup
-            android:visibility="gone"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="12pt"
-            android:id="@+id/RGType">
-
-            <CheckBox
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/roomType"
                 android:layout_height="wrap_content"
-                android:text="Deluxe"
-                android:id="@+id/type3"
-                android:checked="true"
-                android:layout_marginTop="5dp"
-                android:textSize="25dp" />
+                android:layout_width="match_parent"
+                android:text="Room Type"
+                android:textAlignment="textStart"
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Standard"
-                android:id="@+id/type4"
-                android:checked="true"
-                android:layout_marginTop="5dp"
-                android:textSize="25dp" />
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Suite"
-                android:id="@+id/type5"
-                android:checked="true"
-                android:layout_marginTop="5dp"
-                android:textSize="25dp" />
-
-        </RadioGroup>
-    <Button
-        android:id="@+id/noOfRooms"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Number of Rooms"
-        android:textAlignment="textStart"
-        android:textSize="25dp"/>
-        <RadioGroup
-            android:visibility="gone"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="12pt"
-            android:id="@+id/RGRooms">
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1 room"
-                android:id="@+id/rooms1"
-                android:checked="true"
-                android:layout_marginTop="5dp"
-                android:textSize="25dp" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2 rooms"
-                android:id="@+id/rooms2"
-                android:checked="false"
-                android:layout_marginTop="5dp"
                 android:textSize="25dp"/>
-
-            <RadioButton
-                android:layout_width="wrap_content"
+            <RadioGroup
+                android:visibility="gone"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="3 rooms"
-                android:id="@+id/rooms3"
-                android:checked="false"
-                android:layout_marginTop="5dp"
-                android:textSize="25dp" />
+                android:layout_marginLeft="12pt"
+                android:id="@+id/RGType">
 
-            <RadioButton
-                android:layout_width="wrap_content"
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Deluxe"
+                    android:id="@+id/type3"
+                    android:checked="true"
+                    android:layout_marginTop="5dp"
+                    android:textSize="25dp" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Standard"
+                    android:id="@+id/type4"
+                    android:checked="true"
+                    android:layout_marginTop="5dp"
+                    android:textSize="25dp" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Suite"
+                    android:id="@+id/type5"
+                    android:checked="true"
+                    android:layout_marginTop="5dp"
+                    android:textSize="25dp" />
+
+            </RadioGroup>
+            <Button
+                android:id="@+id/noOfRooms"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="4 rooms"
-                android:id="@+id/rooms4"
-                android:checked="false"
-                android:layout_marginTop="5dp"
-                android:textSize="25dp" />
+                android:text="Number of Rooms"
+                android:textAlignment="textStart"
+                android:textSize="25dp"/>
+            <RadioGroup
+                android:visibility="gone"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12pt"
+                android:id="@+id/RGRooms">
 
-        </RadioGroup>
-        <Button
-            android:id="@+id/startDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Start Date"
-            android:textAlignment="textStart"
-            android:textSize="25dp"/>
-        <DatePicker
-            android:id="@+id/date"
-            android:visibility="gone"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:datePickerMode="spinner"
-            android:calendarViewShown="false"/>
-        <Button
-            android:id="@+id/startTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Start Time"
-            android:layout_marginBottom="15dp"
-            android:textAlignment="textStart"
-            android:textSize="25dp"/>
-        <TimePicker
-            android:id="@+id/time"
-            android:visibility="gone"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:timePickerMode="spinner"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1 room"
+                    android:id="@+id/rooms1"
+                    android:checked="true"
+                    android:layout_marginTop="5dp"
+                    android:textSize="25dp" />
 
-        <Button
-            android:id="@+id/load"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="25dp"
-            android:text="Submit"
-            android:layout_gravity="center"
-            android:background="#2C1EC6"
-            android:textColor="@color/white"
-            />
-    </GridLayout>
-</ScrollView>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2 rooms"
+                    android:id="@+id/rooms2"
+                    android:checked="false"
+                    android:layout_marginTop="5dp"
+                    android:textSize="25dp"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3 rooms"
+                    android:id="@+id/rooms3"
+                    android:checked="false"
+                    android:layout_marginTop="5dp"
+                    android:textSize="25dp" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4 rooms"
+                    android:id="@+id/rooms4"
+                    android:checked="false"
+                    android:layout_marginTop="5dp"
+                    android:textSize="25dp" />
+
+            </RadioGroup>
+            <Button
+                android:id="@+id/startDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Start Date"
+                android:textAlignment="textStart"
+                android:textSize="25dp"/>
+            <DatePicker
+                android:id="@+id/date"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:datePickerMode="spinner"
+                android:calendarViewShown="false"/>
+            <Button
+                android:id="@+id/startTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Start Time"
+                android:layout_marginBottom="15dp"
+                android:textAlignment="textStart"
+                android:textSize="25dp"/>
+            <TimePicker
+                android:id="@+id/time"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:timePickerMode="spinner"/>
+
+            <Button
+                android:id="@+id/load"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="25dp"
+                android:text="Submit"
+                android:layout_gravity="center"
+                android:background="#2C1EC6"
+                android:textColor="@color/white"
+                />
+        </GridLayout>
+    </ScrollView>
 </LinearLayout>
