@@ -24,7 +24,7 @@ public class hotelDatabase extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         //Create tables
         String tbl_room = "CREATE TABLE "+TABLE_ROOM+"(ID INTEGER PRIMARY KEY, hotel_id INTEGER, room_no INTEGER, " +
-                "roomType VARCHAR(25), guest_id INTEGER, checkin DATE, checkout DATE, status VARCHAR(25), " +
+                "roomType VARCHAR(25), guest_id INTEGER, checkin DATE,checkout DATE, status VARCHAR(25), " +
                 "CONSTRAINT h FOREIGN KEY(hotel_id) REFERENCES hotel(ID), CONSTRAINT g FOREIGN KEY(guest_id) REFERENCES testable(ID))";
         String tbl_hotel = "CREATE TABLE "+TABLE_HOTEL+"(ID integer primary key autoincrement, manager_id INTEGER, " +
                 "name VARCHAR(20), location VARCHAR(50), CONSTRAINT a FOREIGN KEY(manager_id) REFERENCES testtable(ID))";
@@ -177,6 +177,23 @@ public class hotelDatabase extends SQLiteOpenHelper {
         {
             return true;
         }
+    }
+
+    public Cursor getBasicRoomDetails(String hotelid, String roomno)
+    {
+        SQLiteDatabase sqldb = this.getReadableDatabase();
+
+        Cursor cursor = sqldb.rawQuery("SELECT hotel_id,room_no,roomType,status FROM room WHERE hotel_id = '"+hotelid+"' AND room_no = '"+roomno+"' ", null);
+
+        return cursor;
+    }
+    public Cursor getHotelName(String hotelid)
+    {
+        SQLiteDatabase sqldb = this.getReadableDatabase();
+
+        Cursor cursor = sqldb.rawQuery("SELECT name from hotel where ID = '"+hotelid+"' ", null);
+
+        return cursor;
     }
 
     //get values from table "room"

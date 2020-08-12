@@ -25,11 +25,11 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class SelectableRoomList extends AppCompatActivity {
-    String Roomno="",hotelname="";
+    String Roomno="",hotelid="";
     private ArrayList<HashMap<String, String>> list;
     private ArrayList<HashMap<String, String>> list1;
     ListView listContent;
-    DatabaseHelper db;
+    hotelDatabase db;
     ArrayAdapter<HashMap<String, String>> arrayAdapter;
 
     @Override
@@ -44,9 +44,9 @@ public class SelectableRoomList extends AppCompatActivity {
         listContent = (ListView)findViewById(R.id.thelist);
 
         Roomno = getIntent().getExtras().getString("Roomno");
-        hotelname = getIntent().getExtras().getString("hotelname");
+        hotelid = getIntent().getExtras().getString("hotelid");
 
-        db = new DatabaseHelper(this);
+        db = new hotelDatabase(this);
 
         list=new ArrayList<HashMap<String,String>>();
         list1 = new ArrayList<HashMap<String, String>>();
@@ -58,214 +58,68 @@ public class SelectableRoomList extends AppCompatActivity {
         SimpleDateFormat sm = new SimpleDateFormat("MM-dd-yyyy");
         String strDate = sm.format(myDate);
 
-        if(hotelname.matches("Maverick"))
-        {
-            if(roomnum >= 101 && roomnum <=125 || roomnum >=201 && roomnum <=225 || roomnum >=301 && roomnum <=325 || roomnum >=401 && roomnum <=413)
-            {
-                HashMap<String,String> temp=new HashMap<String, String>();
-                temp.put("HotelName","Maverick");
+        Cursor cs = db.getBasicRoomDetails(hotelid,Roomno);
+
+        HashMap<String,String> temp=new HashMap<String, String>();
+
+        int theName = cs.getCount();
+
+        if (cs.moveToFirst()) {
+            while (!cs.isAfterLast()) {
+
+                String hotelid  = cs.getString(cs.getColumnIndex("hotel_id"));
+
+                if(hotelid.matches("1"))
+                {
+                    temp.put("HotelName","Maverick");
+                }
+                else if(hotelid.matches("2"))
+                {
+                    temp.put("HotelName","Liberty");
+                }
+                else if(hotelid.matches("3"))
+                {
+                    temp.put("HotelName","Ranger");
+                }
+                else if(hotelid.matches("4"))
+                {
+                    temp.put("HotelName","Shard");
+                }
+                else
+                {
+                    temp.put("HotelName","Williams");
+                }
+
                 temp.put("StartDate",strDate);
-                temp.put("RoomType","Standard");
+                temp.put("RoomType",cs.getString(cs.getColumnIndex("roomType")));
                 temp.put("RoomNumber",Roomno);
                 list.add(temp);
-                temp.put("RoomRate","80");
-                temp.put("RoomOccupiedStatus","False");
-                temp.put("RoomAvailableStatus","True");
+
+                temp.put("RoomAvailableStatus",cs.getString(cs.getColumnIndex("status")));
+
+                if(cs.getString(cs.getColumnIndex("roomType")).matches("Standard"))
+                {
+                    temp.put("RoomRate","80");
+                }
+                else if(cs.getString(cs.getColumnIndex("roomType")).matches("Deluxe"))
+                {
+                    temp.put("RoomRate","100");
+                }
+                else
+                {
+                    temp.put("RoomRate","120");
+                }
+
+                if(cs.getString(cs.getColumnIndex("status")).matches("available"))
+                {
+                    temp.put("RoomOccupiedStatus","unoccupied");
+                }
+                else
+                {
+                    temp.put("RoomOccupiedStatus","occupied");
+                }
                 list1.add(temp);
-            }
-            else if(roomnum>=414 && roomnum<=421)
-            {
-                HashMap<String,String> temp=new HashMap<String, String>();
-                temp.put("HotelName","Maverick");
-                temp.put("StartDate",strDate);
-                temp.put("RoomType","Deluxe");
-                temp.put("RoomNumber",Roomno);
-                list.add(temp);
-                temp.put("RoomRate","100");
-                temp.put("RoomOccupiedStatus","False");
-                temp.put("RoomAvailableStatus","True");
-                list1.add(temp);
-            }
-            else
-            {
-                HashMap<String,String> temp=new HashMap<String, String>();
-                temp.put("HotelName","Maverick");
-                temp.put("StartDate",strDate);
-                temp.put("RoomType","Suite");
-                temp.put("RoomNumber",Roomno);
-                list.add(temp);
-                temp.put("RoomRate","120");
-                temp.put("RoomOccupiedStatus","False");
-                temp.put("RoomAvailableStatus","True");
-                list1.add(temp);
-            }
-        }
-        else if(hotelname.matches("Liberty"))
-        {
-            if(roomnum >= 101 && roomnum <=125 || roomnum >=201 && roomnum <=225 || roomnum >=301 && roomnum <=325 || roomnum >=401 && roomnum <=413)
-            {
-                HashMap<String,String> temp=new HashMap<String, String>();
-                temp.put("HotelName","Liberty");
-                temp.put("StartDate",strDate);
-                temp.put("RoomType","Standard");
-                temp.put("RoomNumber",Roomno);
-                list.add(temp);
-                temp.put("RoomRate","80");
-                temp.put("RoomOccupiedStatus","False");
-                temp.put("RoomAvailableStatus","True");
-                list1.add(temp);
-            }
-            else if(roomnum>=414 && roomnum<=421)
-            {
-                HashMap<String,String> temp=new HashMap<String, String>();
-                temp.put("HotelName","Liberty");
-                temp.put("StartDate",strDate);
-                temp.put("RoomType","Deluxe");
-                temp.put("RoomNumber",Roomno);
-                list.add(temp);
-                temp.put("RoomRate","100");
-                temp.put("RoomOccupiedStatus","False");
-                temp.put("RoomAvailableStatus","True");
-                list1.add(temp);
-            }
-            else
-            {
-                HashMap<String,String> temp=new HashMap<String, String>();
-                temp.put("HotelName","Liberty");
-                temp.put("StartDate",strDate);
-                temp.put("RoomType","Suite");
-                temp.put("RoomNumber",Roomno);
-                list.add(temp);
-                temp.put("RoomRate","120");
-                temp.put("RoomOccupiedStatus","False");
-                temp.put("RoomAvailableStatus","True");
-                list1.add(temp);
-            }
-        }
-        else if(hotelname.matches("Ranger"))
-        {
-            if(roomnum >= 101 && roomnum <=125 || roomnum >=201 && roomnum <=225 || roomnum >=301 && roomnum <=325 || roomnum >=401 && roomnum <=413)
-            {
-                HashMap<String,String> temp=new HashMap<String, String>();
-                temp.put("HotelName","Ranger");
-                temp.put("StartDate",strDate);
-                temp.put("RoomType","Standard");
-                temp.put("RoomNumber",Roomno);
-                list.add(temp);
-                temp.put("RoomRate","80");
-                temp.put("RoomOccupiedStatus","False");
-                temp.put("RoomAvailableStatus","True");
-                list1.add(temp);
-            }
-            else if(roomnum>=414 && roomnum<=421)
-            {
-                HashMap<String,String> temp=new HashMap<String, String>();
-                temp.put("HotelName","Ranger");
-                temp.put("StartDate",strDate);
-                temp.put("RoomType","Deluxe");
-                temp.put("RoomNumber",Roomno);
-                list.add(temp);
-                temp.put("RoomRate","100");
-                temp.put("RoomOccupiedStatus","False");
-                temp.put("RoomAvailableStatus","True");
-                list1.add(temp);
-            }
-            else
-            {
-                HashMap<String,String> temp=new HashMap<String, String>();
-                temp.put("HotelName","Ranger");
-                temp.put("StartDate",strDate);
-                temp.put("RoomType","Suite");
-                temp.put("RoomNumber",Roomno);
-                list.add(temp);
-                temp.put("RoomRate","120");
-                temp.put("RoomOccupiedStatus","False");
-                temp.put("RoomAvailableStatus","True");
-                list1.add(temp);
-            }
-        }
-        else if(hotelname.matches("Shard"))
-        {
-            if(roomnum >= 101 && roomnum <=125 || roomnum >=201 && roomnum <=225 || roomnum >=301 && roomnum <=325 || roomnum >=401 && roomnum <=413)
-            {
-                HashMap<String,String> temp=new HashMap<String, String>();
-                temp.put("HotelName","Shard");
-                temp.put("StartDate",strDate);
-                temp.put("RoomType","Standard");
-                temp.put("RoomNumber",Roomno);
-                list.add(temp);
-                temp.put("RoomRate","80");
-                temp.put("RoomOccupiedStatus","False");
-                temp.put("RoomAvailableStatus","True");
-                list1.add(temp);
-            }
-            else if(roomnum>=414 && roomnum<=421)
-            {
-                HashMap<String,String> temp=new HashMap<String, String>();
-                temp.put("HotelName","Shard");
-                temp.put("StartDate",strDate);
-                temp.put("RoomType","Deluxe");
-                temp.put("RoomNumber",Roomno);
-                list.add(temp);
-                temp.put("RoomRate","100");
-                temp.put("RoomOccupiedStatus","False");
-                temp.put("RoomAvailableStatus","True");
-                list1.add(temp);
-            }
-            else
-            {
-                HashMap<String,String> temp=new HashMap<String, String>();
-                temp.put("HotelName","Shard");
-                temp.put("StartDate",strDate);
-                temp.put("RoomType","Suite");
-                temp.put("RoomNumber",Roomno);
-                list.add(temp);
-                temp.put("RoomRate","120");
-                temp.put("RoomOccupiedStatus","False");
-                temp.put("RoomAvailableStatus","True");
-                list1.add(temp);
-            }
-        }
-        else if(hotelname.matches("Williams"))
-        {
-            if(roomnum >= 101 && roomnum <=125 || roomnum >=201 && roomnum <=225 || roomnum >=301 && roomnum <=325 || roomnum >=401 && roomnum <=413)
-            {
-                HashMap<String,String> temp=new HashMap<String, String>();
-                temp.put("HotelName","Williams");
-                temp.put("StartDate",strDate);
-                temp.put("RoomType","Standard");
-                temp.put("RoomNumber",Roomno);
-                list.add(temp);
-                temp.put("RoomRate","80");
-                temp.put("RoomOccupiedStatus","False");
-                temp.put("RoomAvailableStatus","True");
-                list1.add(temp);
-            }
-            else if(roomnum>=414 && roomnum<=421)
-            {
-                HashMap<String,String> temp=new HashMap<String, String>();
-                temp.put("HotelName","Williams");
-                temp.put("StartDate",strDate);
-                temp.put("RoomType","Deluxe");
-                temp.put("RoomNumber",Roomno);
-                list.add(temp);
-                temp.put("RoomRate","100");
-                temp.put("RoomOccupiedStatus","False");
-                temp.put("RoomAvailableStatus","True");
-                list1.add(temp);
-            }
-            else
-            {
-                HashMap<String,String> temp=new HashMap<String, String>();
-                temp.put("HotelName","Williams");
-                temp.put("StartDate",strDate);
-                temp.put("RoomType","Suite");
-                temp.put("RoomNumber",Roomno);
-                list.add(temp);
-                temp.put("RoomRate","120");
-                temp.put("RoomOccupiedStatus","False");
-                temp.put("RoomAvailableStatus","True");
-                list1.add(temp);
+                cs.moveToNext();
             }
         }
 

@@ -19,7 +19,7 @@ import java.util.List;
 public class SearchRoom extends AppCompatActivity {
 
     Spinner spinner2;
-    String hotelNames="",roomnu="";
+    String hotelNames="",roomnu="",hotelid = "";
     EditText roomnumber;
     int roomno;
     private Button enter;
@@ -55,6 +55,7 @@ public class SearchRoom extends AppCompatActivity {
             }
         });
 
+
         enter = (Button) findViewById(R.id.enter);
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +63,27 @@ public class SearchRoom extends AppCompatActivity {
             {
 
                 roomnu = roomnumber.getText().toString();
+
+                if(hotelNames == "Maverick")
+                {
+                    hotelid = "1";
+                }
+                else if(hotelNames == "Liberty")
+                {
+                    hotelid = "2";
+                }
+                else if(hotelNames == "Ranger")
+                {
+                    hotelid = "3";
+                }
+                else if(hotelNames == "Shard")
+                {
+                    hotelid = "4";
+                }
+                else
+                {
+                    hotelid = "5";
+                }
 
                 if(roomnu.matches(""))
                 {
@@ -76,7 +98,7 @@ public class SearchRoom extends AppCompatActivity {
                     {
                         Intent myIntent = new Intent(SearchRoom.this, SelectableRoomList.class);
                         myIntent.putExtra("Roomno",roomnu);
-                        myIntent.putExtra("hotelname",hotelNames);
+                        myIntent.putExtra("hotelid",hotelid);
                         startActivity(myIntent);
                     }
                     else
