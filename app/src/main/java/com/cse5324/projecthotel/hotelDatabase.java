@@ -178,7 +178,14 @@ public class hotelDatabase extends SQLiteOpenHelper {
             return true;
         }
     }
+    public Cursor getListofReservations(String hotelid)
+    {
+        SQLiteDatabase sqldb = this.getReadableDatabase();
 
+        Cursor cursor = sqldb.rawQuery("SELECT *from reservation WHERE hotel_id = '"+hotelid+"' ", null);
+
+        return cursor;
+    }
     public Cursor getBasicRoomDetails(String hotelid, String roomno)
     {
         SQLiteDatabase sqldb = this.getReadableDatabase();
@@ -187,11 +194,11 @@ public class hotelDatabase extends SQLiteOpenHelper {
 
         return cursor;
     }
-    public Cursor getHotelName(String hotelid)
+    public Cursor getHotelName(String hotel)
     {
         SQLiteDatabase sqldb = this.getReadableDatabase();
 
-        Cursor cursor = sqldb.rawQuery("SELECT name from hotel where ID = '"+hotelid+"' ", null);
+        Cursor cursor = sqldb.rawQuery("SELECT ID from hotel where name = '"+hotel+"' ", null);
 
         return cursor;
     }
