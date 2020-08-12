@@ -296,17 +296,10 @@ public class hotelDatabase extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean updateRoomStatus(String stat, String id)
+    public boolean updateRoomStatus(String status, String roomno)
     {
-        SQLiteDatabase sqldb = this.getWritableDatabase();
-        Cursor cursor = sqldb.rawQuery("UPDATE "+TABLE_ROOM+" SET status='"+stat+"' WHERE id='"+id+"'", null);
-        if(cursor.getCount()==0)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.execSQL("UPDATE "+TABLE_ROOM+" SET status = "+"'"+status+"' "+ "WHERE room_no = "+"'"+roomno+"'");
+        return true;
     }
 }
