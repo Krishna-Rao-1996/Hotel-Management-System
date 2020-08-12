@@ -103,7 +103,7 @@ public class hotelDatabase extends SQLiteOpenHelper {
         cv3.put("user_id", ip.getAsString("user_id"));
         cv3.put("fromDate", ip.getAsString("fromDate"));
         cv3.put("toDate", ip.getAsString("toDate"));
-        cv3.put("numOfRooms", ip.getAsString("numOfRooms"));
+        cv3.put("numOfRooms", ip.getAsString("numRooms"));
         cv3.put("inTime", ip.getAsString("inTime"));
         cv3.put("hotel_id", ip.getAsString("hotel_id"));
         cv3.put("status", ip.getAsString("status"));

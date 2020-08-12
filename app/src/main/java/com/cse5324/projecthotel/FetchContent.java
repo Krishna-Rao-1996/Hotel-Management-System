@@ -234,15 +234,9 @@ public class FetchContent extends AppCompatActivity {
                 EditText tod = findViewById(R.id.td6);
                 TextView price=findViewById(R.id.td7);
 
-
-
                 @Override
                 public void onClick(View v) {
                     final String user=user_id;
-
-                    String DATE = tod.getText().toString();
-                    String Hotel = hotel.getText().toString();
-
                     ContentValues cv = new ContentValues();
                     cv.put("user_id", user);
                     cv.put("fromDate", from.getText().toString());
