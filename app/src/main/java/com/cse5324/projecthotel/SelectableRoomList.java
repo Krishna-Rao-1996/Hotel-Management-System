@@ -65,12 +65,11 @@ public class SelectableRoomList extends AppCompatActivity {
 
         Cursor cs = db.getBasicRoomDetails(hotelid,Roomno);
 
-        HashMap<String,String> temp=new HashMap<String, String>();
-
         int theName = cs.getCount();
 
         if (cs.moveToFirst()) {
             while (!cs.isAfterLast()) {
+                HashMap<String,String> temp=new HashMap<String, String>();
 
                 String hotelid  = cs.getString(cs.getColumnIndex("hotel_id"));
 

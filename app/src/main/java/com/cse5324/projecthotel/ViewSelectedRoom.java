@@ -16,7 +16,7 @@ public class ViewSelectedRoom extends AppCompatActivity {
     private Button button2;
     private Button home;
     hotelDatabase db;
-    String roomStatus="",roomStat = "",roomnumber = "",roomOccupiedstat = "";
+    String roomStatus="",roomStat = "",roomnumber = "",roomOccupiedstat = "",activity = "";
     EditText Hotelname,StartDate,Roomtype,Roomnumber,RoomOccupiedStatus,RoomAvailableStatus,RoomRate;
     String [] stringArray;
 
@@ -25,7 +25,7 @@ public class ViewSelectedRoom extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_selected_room);
 
-        getSupportActionBar().setTitle("View Selected Room");
+        getSupportActionBar().setTitle("Modify Selected Room");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Hotelname = (EditText)findViewById(R.id.hotelName);
@@ -34,6 +34,8 @@ public class ViewSelectedRoom extends AppCompatActivity {
 
         Intent intent = getIntent();
         stringArray = intent.getStringArrayExtra("listselected");
+        activity = intent.getExtras().getString("AvailableActivity");
+
 
         Hotelname = (EditText)findViewById(R.id.hotelName);
         StartDate = (EditText)findViewById(R.id.StartDate);
@@ -43,13 +45,66 @@ public class ViewSelectedRoom extends AppCompatActivity {
         RoomAvailableStatus = (EditText)findViewById(R.id.roomAvailableStatus);
         RoomRate = (EditText)findViewById(R.id.roomRate);
 
-        StartDate.setText(stringArray[0]);
-        Hotelname.setText(stringArray[4]);
+
+        if(activity.equals("Available"))
+        {
+            String[] a = stringArray[0].split("=");
+            String as = a[1];
+            as =  as.substring(1);
+
+            StartDate.setText(as);
+        }
+        else
+        {
+            StartDate.setText(stringArray[0]);
+        }
+        if(activity.equals("Available"))
+        {
+            String[] a = stringArray[0].split("=");
+            String as = a[1];
+            as =  as.substring(0, as.length() - 1);
+
+            Hotelname.setText(as);
+        }
+        else
+        {
+            Hotelname.setText(stringArray[4]);
+        }
+
         Roomtype.setText(stringArray[1]);
-        RoomOccupiedStatus.setText(stringArray[3]);
-        RoomAvailableStatus.setText(stringArray[2]);
-        Roomnumber.setText(stringArray[5]);
-        RoomRate.setText(stringArray[6]);
+        if(activity.equals("Available"))
+        {
+            RoomOccupiedStatus.setText("unoccupied");
+        }
+        else
+        {
+            RoomOccupiedStatus.setText(stringArray[3]);
+        }
+        if(activity.equals("Available"))
+        {
+            RoomAvailableStatus.setText("available");
+        }
+        else
+        {
+            RoomAvailableStatus.setText(stringArray[2]);
+        }
+        if(activity.equals("Available"))
+        {
+            Roomnumber.setText(stringArray[3]);
+        }
+        else
+        {
+            Roomnumber.setText(stringArray[5]);
+        }
+        if(activity.equals("Available"))
+        {
+            RoomRate.setText(stringArray[2]);
+        }
+        else
+        {
+            RoomRate.setText(stringArray[6]);
+        }
+
 
         roomStatus = RoomAvailableStatus.getText().toString();
         roomnumber = Roomnumber.getText().toString();
@@ -80,13 +135,13 @@ public class ViewSelectedRoom extends AppCompatActivity {
 
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                getSupportActionBar().setTitle("Modify Selected Room");
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                 button2.setVisibility(View.VISIBLE);
                 RoomAvailableStatus.setEnabled(true);
                 RoomRate.setEnabled(true);
             }
         });
-
-
 
 
         home.setOnClickListener(new View.OnClickListener() {

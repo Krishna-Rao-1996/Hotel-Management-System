@@ -25,7 +25,7 @@ public class AvailableRoomList extends AppCompatActivity {
     private ArrayList<HashMap<String, String>> list;
     ListView listContent;
     hotelDatabase db;
-    HashMap<String,String> temp = new HashMap<String, String>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +70,7 @@ public class AvailableRoomList extends AppCompatActivity {
 
         while (sd.moveToNext())
         {
+            HashMap<String,String> temp = new HashMap<String, String>();
             temp.put("StartDate",date);
             temp.put("HotelName",hotel);
             temp.put("room_no",sd.getString(sd.getColumnIndex("room_no")));
@@ -101,8 +102,11 @@ public class AvailableRoomList extends AppCompatActivity {
             {
                 String text = parent.getItemAtPosition(position).toString();
 
+                String[] nums = text.split(",");
+
                 Intent myIntent = new Intent(AvailableRoomList.this, ViewSelectedRoom.class);
-                myIntent.putExtra("listselected",text);
+                myIntent.putExtra("listselected",nums);
+                myIntent.putExtra("AvailableActivity","Available");
                 startActivity(myIntent);
             }
         });
