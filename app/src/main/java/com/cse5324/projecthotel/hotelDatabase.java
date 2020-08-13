@@ -186,6 +186,14 @@ public class hotelDatabase extends SQLiteOpenHelper {
 
         return cursor;
     }
+    public Cursor getListofAvailableRooms(String hotelid)
+    {
+        SQLiteDatabase sqldb = this.getReadableDatabase();
+
+        Cursor cursor = sqldb.rawQuery("SELECT room_no,roomType from "+TABLE_ROOM+" WHERE hotel_id='"+hotelid+"' AND status='available'", null);
+
+        return cursor;
+    }
     public Cursor getBasicRoomDetails(String hotelid, String roomno)
     {
         SQLiteDatabase sqldb = this.getReadableDatabase();

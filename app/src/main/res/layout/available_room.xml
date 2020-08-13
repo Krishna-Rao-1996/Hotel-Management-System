@@ -4,22 +4,62 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:textSize="13pt"
-        android:text="LOADING..." />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="95dp" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+    <Spinner
+        android:id="@+id/hotelName"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:textAlignment="center"
+        android:spinnerMode="dropdown"
+        android:visibility="visible"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="45dp" />
+
+    <EditText
+        android:id="@+id/Date"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:ems="10"
+        android:hint="Date"
+        android:inputType="date"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="45dp" />
+
+    <EditText
+        android:id="@+id/Time"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:ems="10"
+        android:hint="Time"
+        android:inputType="time"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="80dp" />
+
+    <Button
+        android:id="@+id/enter"
+        android:layout_width="0.8in"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:textSize="10pt"
-        android:text="Available Rooms Page" />
-
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/custom_button"
+        android:padding="10dp"
+        android:text="Enter"
+        android:textColor="#ECECEC" />
 </LinearLayout>
+
