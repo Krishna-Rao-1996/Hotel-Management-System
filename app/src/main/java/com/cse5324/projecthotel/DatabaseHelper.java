@@ -76,6 +76,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor getUserDetails(String role)
+    {
+        SQLiteDatabase sqldb = this.getReadableDatabase();
+        ///Perform RawQuery
+        db = this.getReadableDatabase();
+        String queryForCheckingPassword = "SELECT * FROM " + TABLE_NAME + " WHERE ROLE = '" + role + "'";
+        Cursor cursor = db.rawQuery(queryForCheckingPassword, null);
+
+        return cursor;
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
