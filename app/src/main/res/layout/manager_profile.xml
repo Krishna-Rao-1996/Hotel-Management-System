@@ -1,25 +1,249 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:textSize="13pt"
-        android:text="LOADING..." />
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:overScrollMode="never"
+        android:verticalScrollbarPosition="defaultPosition">
+        <EditText
+            android:id="@+id/register_username"
+            android:layout_width="match_parent"
+            android:enabled="false"
+            android:layout_height="wrap_content"
+            android:hint="@string/username"
+            android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:textSize="10pt"
-        android:layout_marginTop="10dp"
-        android:text="Manager's Profile Page" />
+        <EditText
+            android:id="@+id/ada"
+            android:layout_width="match_parent"
+            android:enabled="false"
+            android:layout_height="wrap_content"
+            android:hint="@string/username"
+            android:textSize="20sp" />
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/register_password"
+            android:enabled="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/awdaw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/register_firstname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="@string/firstname"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/awdw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="@string/firstname"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/register_lastname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="@string/lastname"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/wdaww"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="@string/lastname"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/register_phone"
+            android:enabled="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/phone"
+            android:inputType="phone"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/wadwaf"
+            android:layout_width="match_parent"
+            android:enabled="false"
+            android:layout_height="wrap_content"
+            android:hint="@string/phone"
+            android:inputType="phone"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/register_email"
+            android:enabled="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/wdaw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/register_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/address"
+            android:enabled="false"
+            android:inputType="textPostalAddress"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/gesaefa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="@string/address"
+            android:inputType="textPostalAddress"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/register_city"
+            android:layout_width="match_parent"
+            android:enabled="false"
+            android:layout_height="wrap_content"
+            android:hint="@string/city"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/wfwa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="@string/city"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/register_state"
+            android:layout_width="match_parent"
+            android:enabled="false"
+            android:layout_height="wrap_content"
+            android:hint="@string/state"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/rgrg"
+            android:layout_width="match_parent"
+            android:enabled="false"
+            android:layout_height="wrap_content"
+            android:hint="@string/state"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/register_zipcode"
+            android:layout_width="match_parent"
+            android:enabled="false"
+            android:layout_height="wrap_content"
+            android:hint="@string/zip"
+            android:inputType="number"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/egeeg"
+            android:layout_width="match_parent"
+            android:enabled="false"
+            android:layout_height="wrap_content"
+            android:hint="@string/zip"
+            android:inputType="number"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/register_credit_card"
+            android:layout_width="match_parent"
+            android:enabled="false"
+            android:layout_height="wrap_content"
+            android:hint="@string/creditcard"
+            android:inputType="number"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/fegeg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="@string/creditcard"
+            android:inputType="number"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/register_cc_expiry"
+            android:layout_width="match_parent"
+            android:enabled="false"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:hint="YYYY-MM-DD"
+            android:inputType="date" />
+
+        <EditText
+            android:id="@+id/waawd"
+            android:layout_width="match_parent"
+            android:enabled="false"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:hint="YYYY-MM-DD"
+            android:inputType="date" />
+
+        <EditText
+            android:id="@+id/register_Role"
+            android:layout_width="match_parent"
+            android:enabled="false"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:hint="Role"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/wdawdafw"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:enabled="false"
+            android:ems="10"
+            android:hint="Role"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/registers_button"
+            android:layout_width="0.8in"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:text="Update Profile"
+            android:textColor="#ECECEC"
+            android:padding="10dp"
+            android:layout_marginBottom="20dp"/>
+    </LinearLayout>
+</ScrollView>

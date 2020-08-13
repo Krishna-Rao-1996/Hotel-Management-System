@@ -39,6 +39,7 @@ public class AdminScreen extends AppCompatActivity{     //implements AdapterView
             @Override
             public void onClick(View v) {
                 //Goes to Profile page
+                Intent myIntent = new Intent();
                 startActivity(new Intent(AdminScreen.this, AdminProfile.class));
                 //Toast.makeText(AdminScreen.this, "View Profile", Toast.LENGTH_SHORT).show();
             }

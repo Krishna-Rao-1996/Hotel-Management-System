@@ -3,18 +3,23 @@ package com.cse5324.projecthotel;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class GuestProfile extends AppCompatActivity {
+    String[] Role;
+    String role = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.guest_profile);
 
-        getSupportActionBar().setTitle("My Profile");
+        getSupportActionBar().setTitle("Guest Profile");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);  //go back button
+
+        Role = getSupportActionBar().getTitle().toString().split(" ");
+
+        role =  Role[0];
     }
     //go back button to work
     @Override
