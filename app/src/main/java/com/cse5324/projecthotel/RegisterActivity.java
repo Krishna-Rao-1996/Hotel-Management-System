@@ -201,7 +201,7 @@ public class RegisterActivity extends AppCompatActivity {
         cv.put(COL_10, sZipCode);
         cv.put(COL_11, screditCardno);
         cv.put(COL_12, sCreditExpiry);
-        cv.put(COL_13, "m");
+        cv.put(COL_13, "g");
         boolean res = db.insertData(cv);
         if(res == true)
         {

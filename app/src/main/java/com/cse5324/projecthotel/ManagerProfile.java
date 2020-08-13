@@ -61,7 +61,7 @@ public class ManagerProfile extends AppCompatActivity {
         Roles = (EditText)findViewById(R.id.register_Role);
 
 
-        Cursor sd = db.getUserDetails(role);
+        Cursor sd = db.getSelectedUserDetails(role);
 
         if (sd.moveToFirst()) {
             while (!sd.isAfterLast())

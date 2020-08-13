@@ -207,23 +207,6 @@
             android:hint="YYYY-MM-DD"
             android:inputType="date" />
 
-        <EditText
-            android:id="@+id/wdawdafw"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:enabled="false"
-            android:ems="10"
-            android:hint="Role"
-            android:inputType="text" />
-
-        <EditText
-            android:id="@+id/register_Role"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:ems="10"
-            android:hint="Role"
-            android:inputType="text" />
-
         <Button
             android:id="@+id/update"
             android:layout_width="0.8in"
@@ -231,7 +214,8 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:background="@drawable/custom_button"
-            android:text="update"
+            android:onClick="registerCheck"
+            android:text="Register"
             android:textColor="#ECECEC"
             android:padding="10dp"
             android:layout_marginBottom="20dp"/>
