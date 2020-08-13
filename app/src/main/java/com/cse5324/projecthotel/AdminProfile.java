@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -12,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 public class AdminProfile extends AppCompatActivity {
     String[] Role;
     String role = "";
-    Button update;
     DatabaseHelper db;
     EditText Username,Password,FirstName,LastName,Phone,Email,StreetAddress,City,State,ZipCode,CreditCardNumber,CreditCardExpiry,Roles;
     @Override
@@ -42,7 +42,6 @@ public class AdminProfile extends AppCompatActivity {
             role = "g";
         }
 
-        update = (Button)findViewById(R.id.update);
         Username = (EditText)findViewById(R.id.register_username);
         Password = (EditText)findViewById(R.id.register_password);
         FirstName = (EditText)findViewById(R.id.register_firstname);
@@ -79,8 +78,6 @@ public class AdminProfile extends AppCompatActivity {
                 sd.moveToNext();
             }
         }
-
-
 
     }
     //go back button to work

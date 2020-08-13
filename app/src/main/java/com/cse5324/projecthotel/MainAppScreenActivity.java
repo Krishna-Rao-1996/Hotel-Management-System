@@ -323,18 +323,19 @@ public class MainAppScreenActivity extends AppCompatActivity {
                     {
                         final Intent intent = new Intent(MainAppScreenActivity.this, GuestScreen.class);
                         intent.putExtra("user_id", cursor.getString(0));
+                        intent.putExtra("username", sUsername);
                         startActivity(intent);
                     }
                     else if(role.equals("m"))
                     {
                         final Intent intent = new Intent(MainAppScreenActivity.this, ManagerScreen.class);
-                        intent.putExtra("user_id", cursor.getString(0));
+                        intent.putExtra("username", sUsername);
                         startActivity(intent);
                     }
                     else if(role.equals("a"))
                     {
                         final Intent intent = new Intent(MainAppScreenActivity.this, AdminScreen.class);
-                        intent.putExtra("user_id", cursor.getString(0));
+                        intent.putExtra("username", sUsername);
                         startActivity(intent);
                     }
                     else {

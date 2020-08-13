@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:orientation="vertical"
@@ -12,10 +12,27 @@
         android:verticalScrollbarPosition="defaultPosition">
 
         <EditText
+            android:id="@+id/ada"
+            android:layout_width="match_parent"
+            android:enabled="false"
+            android:layout_height="wrap_content"
+            android:hint="@string/username"
+            android:textSize="20sp" />
+
+        <EditText
             android:id="@+id/register_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/username"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/awdaw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="@string/password"
+            android:inputType="textPassword"
             android:textSize="20sp" />
 
         <EditText
@@ -27,6 +44,14 @@
             android:textSize="20sp" />
 
         <EditText
+            android:id="@+id/awdw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="@string/firstname"
+            android:textSize="20sp" />
+
+        <EditText
             android:id="@+id/register_firstname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,10 +59,27 @@
             android:textSize="20sp" />
 
         <EditText
+            android:id="@+id/wdaww"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="@string/lastname"
+            android:textSize="20sp" />
+
+        <EditText
             android:id="@+id/register_lastname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/lastname"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/wadwaf"
+            android:layout_width="match_parent"
+            android:enabled="false"
+            android:layout_height="wrap_content"
+            android:hint="@string/phone"
+            android:inputType="phone"
             android:textSize="20sp" />
 
         <EditText
@@ -49,11 +91,29 @@
             android:textSize="20sp" />
 
         <EditText
+            android:id="@+id/wdaw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:textSize="20sp" />
+
+        <EditText
             android:id="@+id/register_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/awdawd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/address"
+            android:enabled="false"
+            android:inputType="textPostalAddress"
             android:textSize="20sp" />
 
         <EditText
@@ -65,10 +125,27 @@
             android:textSize="20sp" />
 
         <EditText
+            android:id="@+id/wfwa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="@string/city"
+            android:textSize="20sp" />
+
+        <EditText
             android:id="@+id/register_city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/city"
+            android:textSize="20sp" />
+
+
+        <EditText
+            android:id="@+id/rgrg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="@string/state"
             android:textSize="20sp" />
 
         <EditText
@@ -76,6 +153,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/state"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/egeeg"
+            android:layout_width="match_parent"
+            android:enabled="false"
+            android:layout_height="wrap_content"
+            android:hint="@string/zip"
+            android:inputType="number"
             android:textSize="20sp" />
 
         <EditText
@@ -87,20 +173,32 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/register_credit_card"
+            android:id="@+id/fegeg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:hint="@string/creditcard"
             android:inputType="number"
             android:textSize="20sp" />
 
-      <!--  <EditText
-            android:id="@+id/register_cc_expiry"
+
+        <EditText
+            android:id="@+id/register_credit_card"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/cc_expiry"
+            android:layout_height="40dp"
+            android:hint="@string/creditcard"
             android:inputType="number"
-            android:textSize="20sp" /> -->
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/waawd"
+            android:layout_width="match_parent"
+            android:enabled="false"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:hint="YYYY-MM-DD"
+            android:inputType="date" />
+
         <EditText
             android:id="@+id/register_cc_expiry"
             android:layout_width="match_parent"
@@ -109,15 +207,31 @@
             android:hint="YYYY-MM-DD"
             android:inputType="date" />
 
+        <EditText
+            android:id="@+id/wdawdafw"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:enabled="false"
+            android:ems="10"
+            android:hint="Role"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/register_Role"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:hint="Role"
+            android:inputType="text" />
+
         <Button
-            android:id="@+id/registers_button"
+            android:id="@+id/update"
             android:layout_width="0.8in"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:background="@drawable/custom_button"
-            android:onClick="registerCheck"
-            android:text="@string/register"
+            android:text="update"
             android:textColor="#ECECEC"
             android:padding="10dp"
             android:layout_marginBottom="20dp"/>

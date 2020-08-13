@@ -76,6 +76,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public void modifyUserDetails(String userName, String password, String lastname, String firstname,
+                                  String phone, String email, String address, String city, String state,
+                                  String zip, String creditcardno,String creditcardexpiry,String roles) {
+        db = this.getReadableDatabase();
+        String modifyUserQuery = "UPDATE " + TABLE_NAME + " SET USERNAME = '" + userName + "', " +
+                "PASSWORD = '" + password + "', " +
+                "LASTNAME = '" + lastname + "', " +
+                "FIRSTNAME = '" + firstname + "', " +
+                "PHONE = '" + phone + "', " +
+                "EMAIL = '" + email + "', " +
+                "ADDRESS = '" + address + "', " +
+                "CITY = '" + city + "', " +
+                "STATE = '" + state + "', " +
+                "CREDITCARDNO = '" + creditcardno + "', " +
+                "CREDITCARDEXPIRY = '" + creditcardexpiry + "', " +
+                "ZIPCODE = '" + zip + "' " +
+                " WHERE ROLE = '" + roles + "'";
+
+        db.execSQL(modifyUserQuery);
+
+    }
+
+    public Cursor getDetails(String role,String Username)
+    {
+        SQLiteDatabase sqldb = this.getReadableDatabase();
+        ///Perform RawQuery
+        db = this.getReadableDatabase();
+        String queryForCheckingPassword = "SELECT * FROM " + TABLE_NAME + " WHERE ROLE = '" + role + "' AND USERNAME = '" + Username + "'";
+        Cursor cursor = db.rawQuery(queryForCheckingPassword, null);
+
+        return cursor;
+    }
+
     public Cursor getUserDetails(String role)
     {
         SQLiteDatabase sqldb = this.getReadableDatabase();

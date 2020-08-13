@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -12,15 +13,17 @@ import androidx.appcompat.app.AppCompatActivity;
 public class GuestProfile extends AppCompatActivity {
     String[] Role;
     String role = "";
-    Button update;
+    private Button update;
     DatabaseHelper db;
+    String username = "",password = "",firstName = "",lastName = "", phone = "",email = "",Address = "",city = "", state = "", zipcode = "",creditCardNumber = "",
+            creditCardExpiry = "",roles = "";
     EditText Username,Password,FirstName,LastName,Phone,Email,StreetAddress,City,State,ZipCode,CreditCardNumber,CreditCardExpiry,Roles;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.admin_profile);
+        setContentView(R.layout.guest_profile);
 
-        getSupportActionBar().setTitle("Guest Profile");
+        getSupportActionBar().setTitle("Manager Profile");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);  //go back button
 
         Role = getSupportActionBar().getTitle().toString().split(" ");
@@ -42,7 +45,7 @@ public class GuestProfile extends AppCompatActivity {
             role = "g";
         }
 
-        update = (Button)findViewById(R.id.update);
+
         Username = (EditText)findViewById(R.id.register_username);
         Password = (EditText)findViewById(R.id.register_password);
         FirstName = (EditText)findViewById(R.id.register_firstname);
@@ -79,9 +82,6 @@ public class GuestProfile extends AppCompatActivity {
                 sd.moveToNext();
             }
         }
-
-
-
     }
     //go back button to work
     @Override

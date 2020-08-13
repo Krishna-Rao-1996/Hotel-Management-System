@@ -50,6 +50,7 @@ public class ManagerScreen extends AppCompatActivity {  ///implements AdapterVie
             @Override
             public void onClick(View v) {
                 //Toast.makeText(ManagerScreen.this, "My Profile", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ManagerScreen.this, ManagerProfile.class);
                 startActivity(new Intent(ManagerScreen.this, ManagerProfile.class));
             }
         });
