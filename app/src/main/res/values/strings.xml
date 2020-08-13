@@ -62,4 +62,5 @@
     </string-array>
 
     <string name="logout">Logout</string>
+    <string name="userRemoved">User Removed</string>
 </resources>

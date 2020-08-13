@@ -81,6 +81,9 @@
         <activity
             android:name=".FetchContent"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ViewSelectedUserDetails"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

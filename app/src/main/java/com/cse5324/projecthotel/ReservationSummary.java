@@ -15,7 +15,6 @@ import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -66,17 +65,16 @@ public class ReservationSummary extends AppCompatActivity {
         table.setLayoutParams(param);
         param.setMargins(5,5,5,5);
 
-        for(int i=1;i<4;i++)
-        {
+        for (int i = 1; i <= 4; i++) {
             TableRow trMain = new TableRow(this);
-            trMain.setId(R.id.summRow+i);
+            trMain.setId(R.id.summRow + i);
             trMain.setBackgroundColor(Color.parseColor("#ffffff"));
             trMain.callOnClick();
             TableLayout.LayoutParams params = new TableLayout.LayoutParams(
                     TableLayout.LayoutParams.MATCH_PARENT,
                     TableLayout.LayoutParams.MATCH_PARENT
             );
-            params.setMargins(5,3,5,3);
+            params.setMargins(5, 3, 5, 3);
             trMain.setLayoutParams(params);
             trMain.setWeightSum(1f);
             //picture load

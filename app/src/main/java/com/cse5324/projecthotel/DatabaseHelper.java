@@ -90,13 +90,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getUsers()
     {
         SQLiteDatabase sqldb = this.getReadableDatabase();
-        Cursor cursor = sqldb.rawQuery("SELECT * FROM "+TABLE_NAME, null);
+        Cursor cursor = sqldb.rawQuery("SELECT * FROM " + TABLE_NAME, null);
 
         return cursor;
     }
+
     public void deleteFrom() {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
+
+    public Cursor searchUsersForAdmin(String lastName) {
+        db = this.getReadableDatabase();
+        String searchUserQuery = "SELECT USERNAME, LASTNAME, FIRSTNAME, PHONE, EMAIL FROM "
+                + TABLE_NAME + " WHERE LASTNAME = '" + lastName + "'";
+        Cursor cursor = db.rawQuery(searchUserQuery, null);
+
+        return cursor;
+    }
+
+    public Cursor getSelectedUserDetails(String userName) {
+        db = this.getReadableDatabase();
+        String searchUserQuery = "SELECT * FROM " + TABLE_NAME + " WHERE USERNAME = '" + userName + "'";
+        Cursor cursor = db.rawQuery(searchUserQuery, null);
+
+        return cursor;
+    }
+
+    public int removeUser(String userName) {
+        db = this.getReadableDatabase();
+        String removeUserQuery = "DELETE FROM " + TABLE_NAME + " WHERE USERNAME = '" + userName + "'";
+        int rows_deleted_count = db.delete(TABLE_NAME, COL_1 + "= '" + userName + "'", null);
+        return rows_deleted_count;
+    }
+
 }
