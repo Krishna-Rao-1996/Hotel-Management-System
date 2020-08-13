@@ -46,63 +46,74 @@ public class ViewSelectedRoom extends AppCompatActivity {
         RoomRate = (EditText)findViewById(R.id.roomRate);
 
 
-        if(activity.equals("Available"))
-        {
-            String[] a = stringArray[0].split("=");
-            String as = a[1];
-            as =  as.substring(1);
-
-            StartDate.setText(as);
-        }
-        else
+        if(activity == null)
         {
             StartDate.setText(stringArray[0]);
         }
-        if(activity.equals("Available"))
+        else
         {
             String[] a = stringArray[0].split("=");
+            String as = a[1];
+
+            StartDate.setText(as);
+        }
+        if(activity == null)
+        {
+            Hotelname.setText(stringArray[4]);
+        }
+        else
+        {
+            String[] a = stringArray[4].split("=");
             String as = a[1];
             as =  as.substring(0, as.length() - 1);
 
             Hotelname.setText(as);
         }
-        else
+        if(activity == null)
         {
-            Hotelname.setText(stringArray[4]);
-        }
-
-        Roomtype.setText(stringArray[1]);
-        if(activity.equals("Available"))
-        {
-            RoomOccupiedStatus.setText("unoccupied");
+            Roomtype.setText(stringArray[1]);
         }
         else
+        {
+            String[] a = stringArray[1].split("=");
+            String as = a[1];
+            Roomtype.setText(as);
+        }
+        if(activity == null)
         {
             RoomOccupiedStatus.setText(stringArray[3]);
         }
-        if(activity.equals("Available"))
-        {
-            RoomAvailableStatus.setText("available");
-        }
         else
+        {
+            RoomOccupiedStatus.setText("unoccupied");
+        }
+        if(activity == null)
         {
             RoomAvailableStatus.setText(stringArray[2]);
         }
-        if(activity.equals("Available"))
-        {
-            Roomnumber.setText(stringArray[3]);
-        }
         else
+        {
+            RoomAvailableStatus.setText("available");
+        }
+        if(activity == null)
         {
             Roomnumber.setText(stringArray[5]);
         }
-        if(activity.equals("Available"))
+        else
         {
-            RoomRate.setText(stringArray[2]);
+            String[] a = stringArray[3].split("=");
+            String as = a[1];
+            Roomnumber.setText(as);
+        }
+        if(activity == null)
+        {
+            RoomRate.setText(stringArray[6]);
         }
         else
         {
-            RoomRate.setText(stringArray[6]);
+            String[] a = stringArray[2].split("=");
+            String as = a[1];
+            RoomRate.setText(as);
         }
 
 
@@ -139,7 +150,6 @@ public class ViewSelectedRoom extends AppCompatActivity {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                 button2.setVisibility(View.VISIBLE);
                 RoomAvailableStatus.setEnabled(true);
-                RoomRate.setEnabled(true);
             }
         });
 
