@@ -130,17 +130,16 @@ public class ViewSelectedRoom extends AppCompatActivity {
             public void onClick(View v) {
 
                 roomStat = RoomAvailableStatus.getText().toString();
-
-                if(roomStatus.matches(roomStat) == false) {
-                    roomStat = "unavailable";
-                    RoomOccupiedStatus.setText("occupied");
-                    boolean res = db.updateRoomStatus(roomStat,roomStat);
-                    Toast.makeText(ViewSelectedRoom.this, "Successful!", Toast.LENGTH_SHORT).show();
+                boolean res = db.updateRoomStatus(roomStat,roomnumber);
+                if(roomStat == "available")
+                {
+                    RoomOccupiedStatus.setText("unoccupied");
                 }
                 else
                 {
-                    Toast.makeText(ViewSelectedRoom.this, "No changes done to the table!", Toast.LENGTH_SHORT).show();
+                    RoomOccupiedStatus.setText("occupied");
                 }
+                Toast.makeText(ViewSelectedRoom.this, "Successful!", Toast.LENGTH_SHORT).show();
             }
         });
 
