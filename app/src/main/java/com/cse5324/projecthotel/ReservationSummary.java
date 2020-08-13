@@ -34,6 +34,7 @@ public class ReservationSummary extends AppCompatActivity {
         //What's the user id?
         Intent getI = getIntent();
         final String info = getI.getStringExtra("user_id");
+        final String from=getI.getStringExtra("from");
         //Toast.makeText(ReservationSummary.this, "user_id="+info, Toast.LENGTH_SHORT).show();
 
         //Logout
@@ -51,7 +52,9 @@ public class ReservationSummary extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Goes to Login page
-                startActivity(new Intent(ReservationSummary.this, ReservationSummaryFilter.class));
+                Intent intent=new Intent(ReservationSummary.this, ReservationSummaryFilter.class);
+                intent.putExtra("user_id", info);
+                startActivity(intent);
             }
         });
 
@@ -73,9 +76,16 @@ public class ReservationSummary extends AppCompatActivity {
         hdb = new hotelDatabase(this);
         if(info!=null)
         {
-            Cursor cur=hdb.getReservation(Integer.parseInt(info));
+            String date="";
+            String time="";
+            if(from!=null)
+            {
+                date=getI.getStringExtra("startDate");
+                time=getI.getStringExtra("startTime");
+            }
+            Cursor cur=hdb.getReservation(Integer.parseInt(info), date, time);
             int count=cur.getCount();
-
+            Log.i("where: ", Integer.toString(count));
             for(int i=0;i<count;i++)    //////////////////////////////////////////////////////////////////
             {
                 cur.moveToNext();
@@ -92,7 +102,7 @@ public class ReservationSummary extends AppCompatActivity {
                 trMain.setWeightSum(1f);
 
                 String type=cur.getString(4); ////////
-                int hotel=cur.getInt(3);
+                final int hotel_id=cur.getInt(3);
            /* if(hotel==0)
             {
                 hotel=1;
@@ -102,7 +112,7 @@ public class ReservationSummary extends AppCompatActivity {
                 {
                     //Log.i("HHHHHHHHHHHHH  ", type.toLowerCase()+hotel);
                     //picture load
-                    int id = getResources().getIdentifier(type.toLowerCase()+hotel, "drawable", getPackageName());
+                    int id = getResources().getIdentifier(type.toLowerCase()+hotel_id, "drawable", getPackageName());
                     Drawable draw = getResources().getDrawable(id);
                     //ImageView pic = findViewById(R.id.roomPicture);
                     pic.setBackground(draw);
@@ -151,7 +161,7 @@ public class ReservationSummary extends AppCompatActivity {
                 miniTable.addView(tr1);
 
                 //Hotel Name
-                Cursor git=hdb.getHotel(Integer.toString(hotel));
+                Cursor git=hdb.getHotel(Integer.toString(hotel_id));
                 git.moveToNext();
                 TableRow tr2 = new TableRow(this);
                 TextView th2 = new TextView(this);
@@ -159,7 +169,7 @@ public class ReservationSummary extends AppCompatActivity {
                 th2.setText("Hotel Name: ");
                 th2.setTextSize(12);
                 TextView td2 = new TextView(this);
-                td2.setText(Integer.toString(hotel));        //get hotel name from db
+                td2.setText(git.getString(git.getColumnIndex("name")));        //get hotel name from db
                 td2.setTextSize(12);
                 tr2.addView(th2);
                 tr2.addView(td2);
@@ -206,6 +216,7 @@ public class ReservationSummary extends AppCompatActivity {
                         Intent intent = new Intent(ReservationSummary.this, FetchContent.class);
                         intent.putExtra("from", "summary");
                         intent.putExtra("user_id", user);
+                        intent.putExtra("hotelID", hotel_id);
                         intent.putExtra("reserveID", reserveID);
 
                         startActivity(intent);
@@ -248,7 +259,9 @@ public class ReservationSummary extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ReservationSummary.this, PendingReservations.class));
+                Intent it=new Intent(ReservationSummary.this, PendingReservations.class);
+                it.putExtra("user_id", info);
+                startActivity(it);
             }
         });
     }

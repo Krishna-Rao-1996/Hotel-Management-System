@@ -8,7 +8,9 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CancellationSignal;
 import android.os.PersistableBundle;
+import android.text.Editable;
 import android.text.Layout;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,9 +48,9 @@ public class FetchContent extends AppCompatActivity {
         Intent i = getIntent();
         final String user_id = i.getStringExtra("user_id");
         final String user = i.getStringExtra("user_id");
-        int hid=i.getIntExtra("hotelID", 1);
+        final int hid=i.getIntExtra("hotelID", 1);
         String lastPage = i.getStringExtra("from");
-        Log.i("==============", user_id);
+        //Log.i("==============", Integer.toString(hid));
 
         if(lastPage.equals("summary")) {
             hdb = new hotelDatabase(this);
@@ -76,7 +78,7 @@ public class FetchContent extends AppCompatActivity {
             TextView nor=findViewById(R.id.td4);
             nor.setText(c.getString(2));
 
-            TextView in=findViewById(R.id.td5);
+            final TextView in=findViewById(R.id.td5);
             in.setText(c.getString(5));
 
             TextView out=findViewById(R.id.td6);
@@ -103,24 +105,35 @@ public class FetchContent extends AppCompatActivity {
             if(amt.getCount()!=0)
             {
                 amt.moveToFirst();
-                int cal=amt.getInt(3)*Integer.parseInt(c.getString(2));
-                price.setText(amt.getInt(3)+" dollars");
+                if(c.getString(8)==null)
+                {
+                    int cal=amt.getInt(3)*Integer.parseInt(c.getString(2));
+                    //calculate per night
+                    price.setText(cal+" dollars"); //amt.getInt(3)
+                }
+                else
+                {
+                    int cal=c.getInt(8);
+                    price.setText(cal+" dollars"); //amt.getInt(3)
+                }
             }
 
             int id = getResources().getIdentifier(low+hid, "drawable", getPackageName());
+            Log.i("HEREEEE ", Integer.toString(hid));
             Drawable draw = getResources().getDrawable(id);
             findViewById(R.id.picture).setBackground(draw);
 
             final Button confirm= findViewById(R.id.confirm);
+            final Button cancel= findViewById(R.id.cancel);
             if(c.getString(c.getColumnIndex("status")).equals("confirmed"))
             {
-                confirm.setText("CANCEL RESERVATION");
-                confirm.setBackgroundColor(Color.GRAY);
+                confirm.setVisibility(View.GONE);
+                cancel.setVisibility(View.VISIBLE);
             }
             else
             {
-                confirm.setText("CONFIRM RESERVATION");
-                confirm.setBackgroundColor(Color.BLUE);
+                cancel.setVisibility(View.VISIBLE);
+                confirm.setVisibility(View.VISIBLE);
             }
 
             final int reserve=reserveID;
@@ -136,30 +149,37 @@ public class FetchContent extends AppCompatActivity {
                             trPop.setVisibility(View.VISIBLE);
                             trPop.setBackgroundColor(Color.CYAN);
                         }
-                        else if(btn.toLowerCase().contains("cancel"))
-                        {
-                            if(hdb.updateReservation(reserve,0,0, btn))
-                            {
-                                Log.i("OP: ", "Deletion success!"+user);
-                                Toast.makeText(FetchContent.this, "Reservation is cancelled", Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(FetchContent.this, ReservationSummary.class);
-                                intent.putExtra("user_id", user);
-                                startActivity(intent);
-                            }
-                        }
                     }
                     else if(et.getText().toString().matches("\\d+"))    //go ahead
                     {
+                        final String us=user_id;
                         if(et.getText().toString().length()==3) //valid
                         {
                             String amt=price.getText().toString().split(" dollar")[0];
                             if(hdb.updateReservation(reserve, Integer.parseInt(amt), Integer.parseInt(et.getText().toString()), btn))
                             {
-                                Log.i("OP: ", "Update success!"+user);
-                                Toast.makeText(FetchContent.this, "Reservation is confirmed", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(FetchContent.this, ReservationSummary.class);
-                                intent.putExtra("user_id", user);
-                                startActivity(intent);
+                                //To update rooms as well
+                                Cursor upd=hdb.getReservationById(reserve);
+                                upd.moveToNext();
+                                //Log.i("numOfRoomsConfirmedRN", upd.getString(2));    4-type
+                                int roomsReserved=Integer.parseInt(upd.getString(2));
+                                int hotel_id=Integer.parseInt(upd.getString(3));
+                                String type=upd.getString(4);
+                                int user=Integer.parseInt(upd.getString(1));
+                                String checkin=upd.getString(5);
+                                String checkout=upd.getString(6);
+                                if(hdb.updateRoom(roomsReserved, hotel_id, type, "unavailable", user, checkin, checkout, reserve))
+                                {
+                                    //Log.i("WOOOFF: ", "That was a success! "+us);
+                                    Toast.makeText(FetchContent.this, "Reservation is confirmed", Toast.LENGTH_SHORT).show();
+                                    //refresh
+                                    finish();
+                                    startActivity(getIntent());
+                                }
+                                else
+                                {
+                                    Log.i("WOOOFF: ", "Naaahh, try again!");
+                                }
                             }
                             else
                             {
@@ -177,7 +197,118 @@ public class FetchContent extends AppCompatActivity {
                     }
                 }
             });
+
+            cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String btn=cancel.getText().toString();
+                    Cursor a=hdb.getReservationById(reserve);
+                    a.moveToNext();
+                    if(a.getString(a.getColumnIndex("status")).equals("confirmed"))
+                    {
+                        Log.i("iiiiiiiiiiiiii: ", "step 1");   //come here
+                        if(hdb.updateReservation(reserve,0,0, btn))
+                        {
+                            Log.i("iiiiiiiiiiiiii: ", "step 2");
+                            //now remove rooms as well
+                            if(hdb.updateRoom(0, 0, null, null, 0, null, null, reserve))
+                            {
+                                Log.i("OP: ", "Deletion success 1!"+u);
+                                Toast.makeText(FetchContent.this, "Reservation is cancelled", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(FetchContent.this, ReservationSummary.class);
+                                intent.putExtra("user_id", u);
+                                startActivity(intent);
+                            }
+                            else
+                            {
+                                Log.i("OP: ", "Didn't work");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if(hdb.updateReservation(reserve,0,0, btn))
+                        {
+                            Log.i("OP: ", "Deletion success 2!"+u);
+                            Toast.makeText(FetchContent.this, "Reservation is cancelled", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(FetchContent.this, ReservationSummary.class);
+                            intent.putExtra("user_id", u);
+                            startActivity(intent);
+                        }
+                        else
+                        {
+                            Log.i("hmmmm: ", "why here");
+                        }
+                    }
+                }
+            });
             hdb.close();
+
+            time.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    Button bt=findViewById(R.id.modify);
+                    bt.setVisibility(View.VISIBLE);
+                }
+                @Override
+                public void afterTextChanged(Editable s) {}
+            });
+            nor.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    Button bt=findViewById(R.id.modify);
+                    bt.setVisibility(View.VISIBLE);
+                }
+                @Override
+                public void afterTextChanged(Editable s) {}
+            });
+            in.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    Button bt=findViewById(R.id.modify);
+                    bt.setVisibility(View.VISIBLE);
+                }
+                @Override
+                public void afterTextChanged(Editable s) {}
+            });
+            out.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    Button bt=findViewById(R.id.modify);
+                    bt.setVisibility(View.VISIBLE);
+                    EditText nor=findViewById(R.id.td4);
+                }
+                @Override
+                public void afterTextChanged(Editable s) {}
+            });
+
+            //Modify button
+            Button btn=findViewById(R.id.modify);
+            btn.setOnClickListener(new View.OnClickListener() {
+                EditText nor=findViewById(R.id.td4);
+                EditText intime=findViewById(R.id.td2);
+                @Override
+                public void onClick(View v) {
+                    hdb=new hotelDatabase(FetchContent.this);
+                    ContentValues cv=new ContentValues();
+                    cv.put("resId", reserve);
+                    cv.put("inTime", intime.getText().toString());
+                    cv.put("numOfRooms", nor.getText().toString());
+                    hdb.modifyReservation(cv);
+                    Toast.makeText(FetchContent.this, "Modification Successful", Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(FetchContent.this, ReservationSummary.class);
+                    intent.putExtra("user_id", user_id);
+                    startActivity(intent);
+                }
+            });
         }
         else if(lastPage.equals("request"))
         {
@@ -185,12 +316,12 @@ public class FetchContent extends AppCompatActivity {
             int numOfRoom=i.getIntExtra("numRoom", 1);
             String rt=i.getStringExtra("roomType");
             String price=i.getStringExtra("cost");
-            Log.i("fetch::::::::::::", price);
+            //Log.i("fetch::::::::::::", price);
             setContentView(R.layout.load_request_contents);
             //Cursor cursor = hdb.getRoomById(room_id);
             //Toast.makeText(FetchContent.this, cursor.getString(2), Toast.LENGTH_SHORT).show();
             TextView date = findViewById(R.id.td1);
-            TextView time = findViewById(R.id.td2);
+            EditText time = findViewById(R.id.td2);
 
             Calendar cal = Calendar.getInstance();
             Date today = cal.getTime();
@@ -226,7 +357,7 @@ public class FetchContent extends AppCompatActivity {
             //Request submit button
             final Button btn = findViewById(R.id.RequestReservation);
             btn.setOnClickListener(new View.OnClickListener() {
-                TextView strTime=findViewById(R.id.td2);
+                EditText strTime=findViewById(R.id.td2);
                 TextView hotel=findViewById(R.id.td);
                 TextView rType=findViewById(R.id.td3);
                 TextView nOfr=findViewById(R.id.td4);
@@ -243,16 +374,7 @@ public class FetchContent extends AppCompatActivity {
                     cv.put("toDate", tod.getText().toString());
                     cv.put("amount", price.getText().toString());
                     cv.put("inTime", strTime.getText().toString());
-                    Cursor cs = hdb.getHotel(hotel.getText().toString());
-                    String hotID = "";
-                    if (cs.getCount() == 0) {
-                        Log.i("ERR:", "error");
-                    } else {
-                        cs.moveToFirst();
-                        hotID = cs.getString(0);
-                        //Log.i("ERR:", num);
-                    }
-                    cv.put("hotel_id", hotID);      ////////ID
+                    cv.put("hotel_id", hid);      ////////ID
                     cv.put("rType", rType.getText().toString());
                     cv.put("status", "pending");
                     cv.put("numRooms", nOfr.getText().toString());
@@ -303,7 +425,11 @@ public class FetchContent extends AppCompatActivity {
 
         ////editable
         final TableLayout tbl = findViewById(R.id.tabLay);
+        /*
+
+         */
     }
+
 
     //go back button to work
     @Override
