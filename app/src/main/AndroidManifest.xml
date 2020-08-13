@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AvailableRoomList"></activity>
+        <activity android:name=".ModifySelectedUserDetails"></activity>
+        <activity android:name=".ViewSelectedUserDetails" />
+        <activity android:name=".AvailableRoomList" />
         <activity android:name=".SpecificReservation" />
         <activity android:name=".ReservationList" />
         <activity android:name=".ViewSelectedRoom" />
