@@ -37,10 +37,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("Create table " + TABLE_NAME +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,USERNAME TEXT,PASSWORD INTEGER, FIRSTNAME TEXT,LASTNAME TEXT,PHONE INTEGER,EMAIL INTEGER, ADDRESS INTEGER, CITY TEXT,STATE TEXT,ZIPCODE INTEGER,CREDITCARDNO INTEGER,CREDITCARDEXPIRY DATE,ROLE TEXT)");
+        db.execSQL("Create table " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,USERNAME TEXT,PASSWORD INTEGER, FIRSTNAME TEXT,LASTNAME TEXT,PHONE INTEGER,EMAIL INTEGER, ADDRESS INTEGER, CITY TEXT,STATE TEXT,ZIPCODE INTEGER,CREDITCARDNO INTEGER,CREDITCARDEXPIRY DATE,ROLE TEXT)");
     }
 
     public boolean insertData(ContentValues ip) {
@@ -61,8 +60,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COL_12, ip.getAsString(COL_12));
         cv.put(COL_13, ip.getAsString(COL_13));
 
-        long result = db.insert(TABLE_NAME,null ,cv);
-        if(result == -1)
+        long result = db.insert(TABLE_NAME, null, cv);
+        if (result == -1)
             return false;
         else
             return true;
@@ -70,25 +69,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor ValidateUser(String username, String password) {
         db = this.getReadableDatabase();
-        String queryForCheckingPassword = "Select * from "+TABLE_NAME+" where USERNAME = '" + username + "' and PASSWORD = '"+password+"'";
+        String queryForCheckingPassword = "Select * from " + TABLE_NAME + " where USERNAME = '" + username + "' and PASSWORD = '" + password + "'";
         Cursor cursor = db.rawQuery(queryForCheckingPassword, null);
 
         ////////////////
         return cursor;
     }
-    public Cursor ViewData(String hotel, String date)
-    {
+
+    public Cursor ViewData(String hotel, String date) {
         db = this.getReadableDatabase();
-        String viewlistquery = "SELECT * FROM "+TABLE_NAME1+" WHERE HOTELNAME = '" + hotel + "' AND CHECKINDATE >= '" + date + "'";
+        String viewlistquery = "SELECT * FROM " + TABLE_NAME1 + " WHERE HOTELNAME = '" + hotel + "' AND CHECKINDATE >= '" + date + "'";
         Cursor cursor = db.rawQuery(viewlistquery, null);
-        return  cursor;
+        return cursor;
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
-    public Cursor getUsers()
-    {
+
+    public Cursor getUsers() {
         SQLiteDatabase sqldb = this.getReadableDatabase();
         Cursor cursor = sqldb.rawQuery("SELECT * FROM " + TABLE_NAME, null);
 
@@ -120,9 +119,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public int removeUser(String userName) {
         db = this.getReadableDatabase();
-        String removeUserQuery = "DELETE FROM " + TABLE_NAME + " WHERE USERNAME = '" + userName + "'";
         int rows_deleted_count = db.delete(TABLE_NAME, COL_1 + "= '" + userName + "'", null);
         return rows_deleted_count;
+    }
+
+
+    public void modifyUserDetails(String userName, String password, String lastname, String firstname,
+                                  String phone, String email, String address, String city, String state,
+                                  String zip, String usernameOriginalVal) {
+        db = this.getReadableDatabase();
+        String modifyUserQuery = "UPDATE " + TABLE_NAME + " SET USERNAME = '" + userName + "', " +
+                "PASSWORD = '" + password + "', " +
+                "LASTNAME = '" + lastname + "', " +
+                "FIRSTNAME = '" + firstname + "', " +
+                "PHONE = '" + phone + "', " +
+                "EMAIL = '" + email + "', " +
+                "ADDRESS = '" + address + "', " +
+                "CITY = '" + city + "', " +
+                "STATE = '" + state + "', " +
+                "ZIPCODE = '" + zip + "' " +
+                " WHERE USERNAME = '" + usernameOriginalVal + "'";
+
+        db.execSQL(modifyUserQuery);
+
     }
 
 }

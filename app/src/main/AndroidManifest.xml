@@ -84,6 +84,9 @@
         <activity
             android:name=".ViewSelectedUserDetails"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ModifySelectedUserDetails"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

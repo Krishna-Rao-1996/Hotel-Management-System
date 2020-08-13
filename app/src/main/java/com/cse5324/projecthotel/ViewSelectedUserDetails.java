@@ -294,6 +294,26 @@ public class ViewSelectedUserDetails extends AppCompatActivity implements Remove
             }
         });
 
+        //opens Modify Selected User Details Screen
+        modifyUserBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ViewSelectedUserDetails.this, ModifySelectedUserDetails.class);
+                intent.putExtra("username_key", userName);
+                intent.putExtra("password_key", password);
+                intent.putExtra("lastname_key", lastName);
+                intent.putExtra("firstname_key", firstName);
+                intent.putExtra("phone_key", phone);
+                intent.putExtra("email_key", email);
+                intent.putExtra("address_key", address);
+                intent.putExtra("city_key", city);
+                intent.putExtra("state_key", state);
+                intent.putExtra("zip_key", zip);
+                startActivity(intent);
+            }
+        });
+
+
         //Logout
         final Button logoutBtn = findViewById(R.id.selectedUserDetailsPageLogoutBtn);
         logoutBtn.setOnClickListener(new View.OnClickListener() {
